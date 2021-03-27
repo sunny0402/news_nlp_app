@@ -17,15 +17,23 @@
         </header>
 
         <main>
-            <section>
-                <!-- -->
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value=""  placeholder="Name">
+            <section class="sentiment-section">
+                <form class="sentiment-form" onsubmit="return Client.handleSubmit(event)">
+                    <input id="name" type="text" name="input" value=""  placeholder="Paste text to get sentiment">
                     <input type="submit" name="" value="submit"  
                     onsubmit="return Client.handleSubmit(event)"
                     onclick="return Client.handleSubmit(event)" >
                 </form>
             <section>
+
+                <section class="summary-section">
+                    <form class="summary-form" onsubmit="return Client.handleSubmit(event)">
+                        <input id="name" type="text" name="input" value=""  placeholder="Paste text to get summary">
+                        <input type="submit" name="" value="submit"  
+                        onsubmit="return Client.handleSubmit(event)"
+                        onclick="return Client.handleSubmit(event)" >
+                    </form>
+                <section>
 
             <section>
                 <strong>Form Results:</strong>
@@ -35,9 +43,6 @@
         <footer>
             <p>This is a footer</p>
         </footer>
-        <script>
-            alert("the end");
-        </script>
         <!-- <script>
             //add service worker at end 
             //Check that service workers are supported

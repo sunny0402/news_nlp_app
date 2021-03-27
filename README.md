@@ -45,3 +45,10 @@ To:
           ]
       ]}
 ```
+
+## NLP Notes
+
+https://www.tutorialspoint.com/natural_language_processing/natural_language_processing_word_sense_disambiguation.htm
+WSD (word-sense disambiguation): which meaning of word is activated by the use of word in a particular context
+
+Lexical ambiguity, syntactic, semantic

@@ -9,7 +9,7 @@ function handleSubmit(event) {
   var axios_req_options = {
     method: "POST",
     baseURL: "https://api.meaningcloud.com",
-    url: `/sentiment-2.1?key=${my_key}&lang=en&txt=${my_text}&model=general&egp=y&uw=y`,
+    url: `/sentiment-2.1?key=${my_key}&lang=en&txt=${my_text}&model=general&egp=n&uw=n&dm=s`,
     headers: {},
     maxRedirects: 20,
   };
