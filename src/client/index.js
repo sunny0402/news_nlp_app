@@ -1,6 +1,5 @@
 import { checkForName } from "./js/nameChecker";
 import { handleSubmit } from "./js/formHandler";
-import { sentimentAnalysisRequest } from "./js/sentimentRequest";
 import { summaryRequest } from "./js/summaryRequest";
 
 /*because of the dependency tree that webpack builds, 
@@ -18,4 +17,4 @@ console.log(checkForName);
 
 alert("entry point exists ");
 
-export { checkForName, handleSubmit, sentimentAnalysisRequest, summaryRequest };
+export { checkForName, handleSubmit, summaryRequest };

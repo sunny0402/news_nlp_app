@@ -3,7 +3,7 @@ let axios = require("axios");
 async function summaryRequest(options) {
   try {
     const response = await axios.request(options);
-    console.log("response from axios request", response.data);
+    console.log("response from axios request", response);
     const summary_object = {
       summary: response.data.summary,
     };

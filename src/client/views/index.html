@@ -17,23 +17,22 @@
         </header>
 
         <main>
-            <section class="sentiment-section">
-                <form class="sentiment-form" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value=""  placeholder="Paste text to get sentiment">
-                    <input type="submit" name="" value="submit"  
-                    onsubmit="return Client.handleSubmit(event)"
-                    onclick="return Client.handleSubmit(event)" >
-                </form>
-            <section>
-
                 <section class="summary-section">
                     <form class="summary-form" onsubmit="return Client.handleSubmit(event)">
-                        <input id="name" type="text" name="input" value=""  placeholder="Paste text to get summary">
+                        <label for="summary-input-url"></label>
+                        <input id="summary-input-url" type="url" name="input" value=""  placeholder="Enter a URL to get summary">
+                        <br>
+                        <input id="summary-input-file" type="file" name="input" value=""  placeholder="Upload a PDF or Word document">
+                        <br>
+                        <input id="summary-input-text" type="text" name="input" value=""  placeholder="Paste text to get summary">
+                        <br>
                         <input type="submit" name="" value="submit"  
                         onsubmit="return Client.handleSubmit(event)"
                         onclick="return Client.handleSubmit(event)" >
                     </form>
                 <section>
+
+
 
             <section>
                 <strong>Form Results:</strong>
