@@ -6,7 +6,7 @@ function handleSubmit(event) {
 
   //Sentiment Analysis Request Options
   //https://www.meaningcloud.com/developer/sentiment-analysis/doc/2.1/request#sentiment-models-language
-  var axios_req_options = {
+  var sentiment_req = {
     method: "POST",
     baseURL: "https://api.meaningcloud.com",
     url: `/sentiment-2.1?key=${my_key}&lang=en&txt=${my_text}&model=general&egp=n&uw=n&dm=s`,
@@ -14,17 +14,28 @@ function handleSubmit(event) {
     maxRedirects: 20,
   };
 
-  // check what text was put into the form field
-  //   let formText = document.getElementById("name").value;
+  //Summary Request Options
+  //https://www.meaningcloud.com/developer/summarization/doc/1.0
+  var summary_req = {
+    method: "POST",
+    baseURL: "https://api.meaningcloud.com",
+    url: `/summarization-1.0?key=${my_key}&lang=en&txt=${my_text}&&sentences=5`,
+    headers: {},
+    maxRedirects: 20,
+  };
 
-  //validate here
+  //validate user input
   Client.checkForName(my_text);
 
   console.log("::: Form Submitted :::");
 
-  Client.sentimentAnalysisRequest(axios_req_options);
+  Client.sentimentAnalysisRequest(sentiment_req);
 
   console.log("::: sentimentAnalysisRequest complete :::");
+
+  Client.summaryRequest(summary_req);
+
+  console.log("::: summaryRequest complete :::");
 }
 
 export { handleSubmit };
