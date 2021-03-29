@@ -19,7 +19,9 @@ function handleSubmit(event) {
 
   //TODO: validate user input
   // Client.checkForName(my_text);
+
   //TODO: allow user to input link, text or file
+  //Client.displayInputField();
 
   console.log("::: Form Submitted :::");
 
