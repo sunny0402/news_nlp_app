@@ -1,5 +1,7 @@
-import { summaryRequest } from "./summaryRequest";
-const my_key = "d89f41c997ae41c64b51d807a5ecdd60";
+//import { summaryRequest } from "./summaryRequest";
+//const my_key = "d89f41c997ae41c64b51d807a5ecdd60";
+
+const my_key = process.env.API_KEY;
 
 function handleSubmit(event) {
   event.preventDefault();

@@ -36,4 +36,8 @@
   }
 }
 
+//https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/mongoose
+//Mongoose set up 
+npm install mongoose
 
+//mongodb+srv://sunny:4455WRX@cluster0.fg4yn.mongodb.net/local_library?retryWrites=true&w=majority
