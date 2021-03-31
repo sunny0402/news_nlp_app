@@ -3,27 +3,31 @@ const dotenv = require("dotenv").config();
 const my_key = process.env.API_KEY;
 
 var path = require("path");
-const mockAPIResponse = require("./myApiRequest.js");
+// let myApiRequest = require("./myApiRequest.js");
+import { myApiRequest } from "./myApiRequest.js";
 
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+serverData = {};
 
 // Require Express to run server and routes
 const express = require("express");
 const app = express();
+
 /* Middleware*/
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-const cors = require("cors");
-app.use(cors());
 
 //Here we are configuring express to use body-parser as middle-ware.
 //deprecated: https://expressjs.com/en/changelog/4x.html#4.16.0
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+const cors = require("cors");
+app.use(cors());
+
 // Initialize the main project folder
-app.use(express.static("website"));
+//!!dist?
+app.use(express.static("dist"));
 
 // Setup Server
 const port = 8080;
@@ -33,30 +37,28 @@ function listening() {
   console.log(`my server running on localhost: ${port}`);
 }
 
-// GET route: make API call, save data to server, send back to client
-app.get("/getData", myActions);
+// GET route: make API call, save data to server, send back to client success message
+app.get("//makeApiReq", myActions);
 
 function myActions(req, resp) {
   //options: res.send(), res.json(), res.end()
   console.log("myActions: incoming get request is", req.body);
 
   //TODO: make API call
-  Client.myApiRequest(req.body).then(function (summary_object) {
-    console.log("::: summaryRequest complete :::");
-
-    //TODO: save summary_object to server
-
-    //TODO: send server_data back to client
-
-    //Client.displayResult(summary_object);
+  myApiRequest(req.body).then(function (summary_object) {
+    let idx_serverData = Object.keys(serverData).length;
+    serverData[idx_serverData] = {
+      //save response from myApiRequest
+      summary_object,
+    };
   });
+  //Not sending data back, client will make another request to get saved server data
+  resp.send("API request succesful and data saved to server.");
 }
 
-  console.log("myActions response is \n", projectData);
+//TODO
+//GET route: send server data to client so that it will be displayed
 
-  //When the parameter is an Array or Object, Express responds with the JSON representation
-  resp.send(projectData);
-}
 //app.use(express.static("dist"));
 //console.log(__dirname);
 

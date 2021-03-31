@@ -1,14 +1,13 @@
-
 let axios = require("axios");
 
 async function myApiRequest(client_input) {
-var summary_req = {
+  var summary_req = {
     method: "POST",
     baseURL: "https://api.meaningcloud.com",
-    url: `/summarization-1.0?key=${process.env.API_KEY}&sentences=${client_input.entences}&url=${client_input.summary_url}`,
+    url: `/summarization-1.0?key=${process.env.API_KEY}&sentences=${client_input.sentences}&url=${client_input.summary_url}`,
     headers: {},
     maxRedirects: 20,
-    };
+  };
   try {
     const response = await axios.request(summary_req);
     console.log("response from axios request", response);
@@ -23,6 +22,4 @@ var summary_req = {
   }
 }
 
-export {myApiRequest};
-
-
+export { myApiRequest };
