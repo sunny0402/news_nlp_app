@@ -1,7 +1,7 @@
 //import { summaryRequest } from "./summaryRequest";
 //const my_key = "d89f41c997ae41c64b51d807a5ecdd60";
 
-const my_key = process.env.API_KEY;
+//const my_key = process.env.API_KEY;
 
 async function handleSubmit(event) {
   event.preventDefault();
@@ -12,30 +12,18 @@ async function handleSubmit(event) {
     sentences: summary_sentences,
     summary_url: client_url,
   };
+
   console.log("::: Form Submitted :::");
 
-  Client.summaryRequest("/makeApiReq", client_data).then(function (
-    summary_object
-  ) {
-    console.log("::: summaryRequest complete :::");
-    Client.displayResult(summary_object);
-  });
+  let step1 = await Client.summaryRequest("/makeApiReq", client_data);
+
+  console.log("::: summaryRequest complete :::");
+
+  let step2 = await Client.serverDataRequest("/dataReq");
+
+  console.log("::: serverDataRequest complete :::");
+
+  let step3 = await Client.displayResult(serverDataResponse);
 }
-
-//Summary Request Options
-//https://www.meaningcloud.com/developer/summarization/doc/1.0
-// var summary_req = {
-//   method: "POST",
-//   baseURL: "https://api.meaningcloud.com",
-//   url: `/summarization-1.0?key=${my_key}&sentences=${summary_sentences}&url=${summary_url}`,
-//   headers: {},
-//   maxRedirects: 20,
-// };
-
-//TODO: validate user input
-// Client.checkForName(my_text);
-
-//TODO: send info to server
-//GET async function to send data to server
 
 export { handleSubmit };

@@ -1,8 +1,8 @@
-async function summaryRequest(url, data = {}) {
+async function serverDataRequest(url) {
   try {
-    console.log("summaryRequest: data \n", data);
+    console.log("serverDataRequest start");
     const response = await fetch(url, {
-      method: "POST",
+      method: "GET",
       credentials: "same-origin",
       headers: {
         "Content-Type": "application/json",
@@ -10,17 +10,14 @@ async function summaryRequest(url, data = {}) {
       body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
 
-    //const serverResponse = await response.json();
-    console.log(
-      "summaryRequest : data posted to server and response received ..."
-    );
-    //console.log("response is... \n", serverResponse);
+    const serverDataResponse = await response.json();
+    console.log(" serverDataRequest: response is... \n", serverDataResponse);
 
     // Not using response, making a seperate get request to get server data
-    //return serverResponse;
+    return serverDataResponse;
   } catch (error) {
     console.log("error", error);
   }
 }
 
-export { summaryRequest };
+export { serverDataRequest };

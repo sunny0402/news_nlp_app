@@ -2,6 +2,7 @@ import { checkForName } from "./js/nameChecker";
 import { handleSubmit } from "./js/formHandler";
 import { summaryRequest } from "./js/summaryRequest";
 import { displayResult } from "./js/displayResult";
+import { serverDataRequest } from "./js/serverDataRequest";
 
 /*because of the dependency tree that webpack builds, 
 if nothing ever is imported, it’s as if it doesn’t exist.*/
@@ -18,4 +19,10 @@ console.log(checkForName);
 
 alert("entry point exists ");
 
-export { checkForName, handleSubmit, summaryRequest, displayResult };
+export {
+  checkForName,
+  handleSubmit,
+  summaryRequest,
+  displayResult,
+  serverDataRequest,
+};
