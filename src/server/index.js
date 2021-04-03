@@ -3,7 +3,7 @@ const dotenv = require("dotenv").config();
 const my_key = process.env.API_KEY;
 
 var path = require("path");
-const myApiRequest = require("./myApiRequest.js");
+let meaningCloudSunnary = require("./myApiRequest.js");
 //import { myApiRequest } from "./myApiRequest.js";
 
 // Setup empty JS object to act as endpoint for all routes
@@ -26,11 +26,16 @@ const cors = require("cors");
 app.use(cors());
 
 // Initialize the main project folder
-//!!dist?
+//?????
+// app.use(express.static('dist'))
+// app.get('/', function (req, res) {
+//     res.sendFile('dist/index.html')
+// })
+
 app.use(express.static("dist"));
 
 // Setup Server
-const port = 8080;
+const port = 3000;
 //for deploying app: process.env.PORT
 const server = app.listen(process.env.PORT || port, listening);
 function listening() {
@@ -45,8 +50,12 @@ async function myActions(req, resp) {
   console.log("myActions: incoming get request is", req.body);
 
   //make meaningCloud API call
-  let new_data = await myApiRequest(req.body);
-  console.log("server myActions new_data", new_data);
+  try {
+    let new_data = await myApiRequest(req.body);
+    console.log("server myActions new_data", new_data);
+  } catch (error) {
+    console.log(error);
+  }
 
   //save data to server, append new_data
   let idx_serverData = Object.keys(serverData).length;
@@ -61,11 +70,15 @@ async function myActions(req, resp) {
 app.get("/dataReq", sendServerData);
 
 async function sendServerData(req, resp) {
-  console.log("sendServerData: incoming get request is", req.body);
+  try {
+    console.log("sendServerData: incoming get request is", req.body);
 
-  const lastEntry = serverData[Object.keys(allData).length - 1];
+    const lastEntry = serverData[Object.keys(serverData).length - 1];
 
-  console.log("sendServerData: response is", serverData[lastEntry]);
+    console.log("sendServerData: response is", serverData[lastEntry]);
 
-  resp.send(serverData[lastEntry]);
+    resp.json(serverData[lastEntry]);
+  } catch (error) {
+    console.log(error);
+  }
 }

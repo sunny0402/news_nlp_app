@@ -22,4 +22,4 @@ async function myApiRequest(client_input) {
   }
 }
 
-export { myApiRequest };
+//export { myApiRequest };
