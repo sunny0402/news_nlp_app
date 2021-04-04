@@ -2,8 +2,8 @@ const dotenv = require("dotenv").config();
 //dotenv.config({ path: "../../.env" });
 const my_key = process.env.API_KEY;
 
-var path = require("path");
-let meaningCloudSunnary = require("./myApiRequest.js");
+const path = require("path");
+const meaningCloud = require("./myApiRequest.js");
 //import { myApiRequest } from "./myApiRequest.js";
 
 // Setup empty JS object to act as endpoint for all routes
@@ -51,7 +51,9 @@ async function myActions(req, resp) {
 
   //make meaningCloud API call
   try {
-    let new_data = await myApiRequest(req.body);
+    // let new_data = await meaningCloud(req.body);
+    let new_data = await meaningCloud(req.body);
+
     console.log("server myActions new_data", new_data);
   } catch (error) {
     console.log(error);
