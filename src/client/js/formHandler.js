@@ -5,9 +5,10 @@
 
 async function handleSubmit(event) {
   event.preventDefault();
-  let client_url = document.getElementById("summary-input-url").value;
-  let summary_sentences = document.getElementById("summary-sentence-count")
-    .value;
+  let client_url = await document.getElementById("summary-input-url").value;
+  let summary_sentences = await document.getElementById(
+    "summary-sentence-count"
+  ).value;
   let client_data = {
     sentences: summary_sentences,
     summary_url: client_url,
@@ -15,18 +16,15 @@ async function handleSubmit(event) {
 
   console.log("::: Form Submitted :::");
 
-  let step1 = await Client.summaryRequest(
-    "http://localhost:3000/makeApiReq",
-    client_data
-  );
-
-  console.log("::: summaryRequest complete :::");
-
-  let step2 = await Client.serverDataRequest("http://localhost:3000/dataReq");
+  Client.summaryRequest("http://localhost:3000/makeApiReq", client_data)
+    .then(await Client.serverDataRequest("http://localhost:3000/dataReq"))
+    .then(function (serverDataResponse) {
+      console.log("::: serverDataRequest complete :::");
+      console.log("serverDataResponse ...", serverDataResponse);
+      Client.displayResult(serverDataResponse);
+    });
 
   console.log("::: serverDataRequest complete :::");
-
-  let step3 = await Client.displayResult(serverDataResponse);
 }
 
 export { handleSubmit };
