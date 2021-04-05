@@ -1,6 +1,5 @@
 async function serverDataRequest(url) {
   try {
-    console.log("serverDataRequest start");
     const response = await fetch(url, {
       method: "GET",
       credentials: "same-origin",
@@ -9,12 +8,17 @@ async function serverDataRequest(url) {
       },
       //body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
+    // .json();
+    const serverResponse = await response.json();
 
-    const serverDataResponse = await response.json();
-    console.log(" serverDataRequest: response is... \n", serverDataResponse);
+    const data_to_display = serverResponse.data;
 
-    // Not using response, making a seperate get request to get server data
-    return serverDataResponse;
+    console.log(
+      " serverDataRequest: response from server is... \n",
+      data_to_display
+    );
+
+    return data_to_display;
   } catch (error) {
     console.log("error", error);
   }

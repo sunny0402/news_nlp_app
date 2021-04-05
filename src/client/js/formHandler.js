@@ -16,15 +16,16 @@ async function handleSubmit(event) {
 
   console.log("::: Form Submitted :::");
 
-  Client.summaryRequest("http://localhost:3000/makeApiReq", client_data)
+  let start = await Client.summaryRequest(
+    "http://localhost:3000/makeApiReq",
+    client_data
+  )
+
     .then(await Client.serverDataRequest("http://localhost:3000/dataReq"))
+
     .then(function (serverDataResponse) {
-      console.log("::: serverDataRequest complete :::");
-      console.log("serverDataResponse ...", serverDataResponse);
       Client.displayResult(serverDataResponse);
     });
-
-  console.log("::: serverDataRequest complete :::");
 }
 
 export { handleSubmit };

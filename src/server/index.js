@@ -1,4 +1,4 @@
-const dotenv = require("dotenv").config();
+const dotenv = require("dotenv").config({ path: "../../.env" });
 const my_key = process.env.API_KEY;
 //dotenv.config({ path: "../../.env" });
 
@@ -36,18 +36,18 @@ function listening() {
   console.log(`my server running on localhost: ${port}`);
 }
 
-// POST ROUTE: make API call, save data to server, send back to client success message
+// POST ROUTE: make Meaning Cloud API call, save data to server, send back to client success message
 app.post("/makeApiReq", myActions);
 
 async function myActions(req, resp) {
   //options: res.send(), res.json(), res.end()
-  console.log("myActions: incoming get request is", req.body);
+  console.log("myActions: incoming request is ..", req.body);
 
   var summary_req = {
     method: "GET",
     url: "http://api.meaningcloud.com/summarization-1.0",
     params: {
-      key: "d89f41c997ae41c64b51d807a5ecdd60",
+      key: `${my_key}`,
       sentences: `${req.body.sentences}`,
       url: `${req.body.summary_url}`,
     },
@@ -55,18 +55,20 @@ async function myActions(req, resp) {
   };
   //make meaningCloud summarization API call
   try {
-    axios
+    await axios
       .request(summary_req)
       .then(function (response) {
-        console.log("response.data ... \n", response.data);
+        console.log("Meaning Cloud response.data ... \n", response.data);
         const summary = response.data.summary;
         return summary;
       })
       //save data to server
       .then(function (summary) {
         console.log("summary being saved to server ...\n", summary);
-        //save data to server, append new_data
+
         let idx_serverData = Object.keys(serverData).length;
+        console.log("idx_serverData ...", idx_serverData);
+
         serverData[idx_serverData] = summary;
         console.log("serverData now is ...\n", serverData);
       })
@@ -82,15 +84,15 @@ app.get("/dataReq", sendServerData);
 
 async function sendServerData(req, resp) {
   try {
-    console.log("sendServerData: incoming get request is", req.body);
+    console.log("sendServerData: incoming get request is ... \n", req.body);
 
-    const lastEntry = serverData[Object.keys(serverData).length - 1];
-    console.log("lastEntry", lastEntry);
+    const lastEntry = {
+      summary: serverData[Object.keys(serverData).length - 1],
+    };
 
-    console.log("sendServerData: response is", serverData[lastEntry]);
-    //.json() .send()
-    // resp.send(serverData[lastEntry]);
-    resp.send(serverData);
+    console.log("sendServerData:  ... \n", lastEntry);
+
+    resp.json(lastEntry);
   } catch (error) {
     console.log(error);
   }

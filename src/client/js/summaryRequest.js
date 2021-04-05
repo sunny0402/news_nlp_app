@@ -1,6 +1,6 @@
 async function summaryRequest(url, data = {}) {
   try {
-    console.log("summaryRequest: data \n", data);
+    console.log("summaryRequest: data being sent to server \n", data);
     const response = await fetch(url, {
       method: "POST",
       credentials: "same-origin",
@@ -14,7 +14,7 @@ async function summaryRequest(url, data = {}) {
     console.log(
       "summaryRequest : data posted to server and response received ..."
     );
-    console.log("response is... \n", serverResponse);
+    console.log("summaryRequest: response is... \n", serverResponse);
 
     // Not using response, making a seperate get request to get server data
     return serverResponse;
