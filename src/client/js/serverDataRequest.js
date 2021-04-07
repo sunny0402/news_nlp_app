@@ -8,17 +8,11 @@ async function serverDataRequest(url) {
       },
       //body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
-    // .json();
     const serverResponse = await response.json();
 
-    const data_to_display = serverResponse.data;
+    console.log("serverDataRequest: serverResponse", serverResponse);
 
-    console.log(
-      " serverDataRequest: response from server is... \n",
-      data_to_display
-    );
-
-    return data_to_display;
+    return serverResponse;
   } catch (error) {
     console.log("error", error);
   }

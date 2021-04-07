@@ -53,12 +53,17 @@ async function myActions(req, resp) {
     },
     headers: {},
   };
-  //make meaningCloud summarization API call
+  //make meaningCloud summarization API call with axios
   try {
     await axios
       .request(summary_req)
       .then(function (response) {
-        console.log("Meaning Cloud response.data ... \n", response.data);
+        console.log("axios ... response.data \n", response.data);
+        console.log(
+          "axios ... response.data.summary \n",
+          response.data.summary
+        );
+
         const summary = response.data.summary;
         return summary;
       })
@@ -73,7 +78,7 @@ async function myActions(req, resp) {
         console.log("serverData now is ...\n", serverData);
       })
       //Not sending data back, client will make another request to get saved server data
-      .then(resp.send("API request succesful and data saved to server."));
+      .then(resp.json("API request succesful and data saved to server."));
   } catch (error) {
     console.log("serve/index.js/myActions error ...\n", error);
   }

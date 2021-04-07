@@ -1,8 +1,3 @@
-//import { summaryRequest } from "./summaryRequest";
-//const my_key = "d89f41c997ae41c64b51d807a5ecdd60";
-
-//const my_key = process.env.API_KEY;
-
 async function handleSubmit(event) {
   event.preventDefault();
   let client_url = await document.getElementById("summary-input-url").value;
@@ -16,16 +11,23 @@ async function handleSubmit(event) {
 
   console.log("::: Form Submitted :::");
 
-  let start = await Client.summaryRequest(
+  const server_msg = await Client.summaryRequest(
     "http://localhost:3000/makeApiReq",
     client_data
-  )
+  );
 
-    .then(await Client.serverDataRequest("http://localhost:3000/dataReq"))
+  console.log("formHandler: Client.summaryRequest: server_msg", server_msg);
 
-    .then(function (serverDataResponse) {
-      Client.displayResult(serverDataResponse);
-    });
+  const data_2_display = await Client.serverDataRequest(
+    "http://localhost:3000/dataReq"
+  );
+
+  console.log(
+    "formHandler: Client.serverDataRequest: data_2_display",
+    data_2_display
+  );
+
+  Client.displayResult(data_2_display);
 }
 
 export { handleSubmit };
