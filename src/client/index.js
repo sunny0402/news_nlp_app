@@ -1,4 +1,3 @@
-import { checkForName } from "./js/nameChecker";
 import { handleSubmit } from "./js/formHandler";
 import { summaryRequest } from "./js/summaryRequest";
 import { displayResult } from "./js/displayResult";
@@ -15,14 +14,6 @@ import "./styles/footer.scss";
 import "./styles/form.scss";
 import "./styles/header.scss";
 
-console.log(checkForName);
-
 alert("entry point exists ");
 
-export {
-  checkForName,
-  handleSubmit,
-  summaryRequest,
-  displayResult,
-  serverDataRequest,
-};
+export { handleSubmit, summaryRequest, displayResult, serverDataRequest };

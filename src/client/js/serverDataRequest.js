@@ -1,3 +1,5 @@
+const fetch = require("node-fetch");
+
 async function serverDataRequest(url) {
   try {
     const response = await fetch(url, {

@@ -9,6 +9,7 @@ async function handleSubmit(event) {
     summary_url: client_url,
   };
 
+  console.log("client_data ..\n", client_data);
   console.log("::: Form Submitted :::");
 
   const server_msg = await Client.summaryRequest(

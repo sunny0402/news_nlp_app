@@ -1,3 +1,5 @@
+const fetch = require("node-fetch");
+
 async function summaryRequest(url, data = {}) {
   try {
     console.log("summaryRequest: data being sent to server \n", data);

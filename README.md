@@ -53,9 +53,53 @@ To:
       ]}
 ```
 
+https://stackoverflow.com/questions/48433783/referenceerror-fetch-is-not-defined
+ReferenceError: fetch is not defined
+
+```
+npm i node-fetch --save
+const fetch = require("node-fetch");
+```
+
 ## Enviroment Variables
 
 ```
 npm install dotenv
 
+```
+
+## Testing
+
+https://www.valentinog.com/blog/jest/
+
+```
+npm install --save-dev jest
+```
+
+## Sample Test
+
+```
+function filterByTerm(inputArr, searchTerm) {
+  const regex = new RegExp(searchTerm, "i");
+  return inputArr.filter(function (arrayElement) {
+    return arrayElement.url.match(regex);
+  });
+}
+
+describe("Filter function", () => {
+  // test stuff
+  test("it should filter by a search term (link)", () => {
+    const input = [
+      { id: 1, url: "https://www.url1.dev" },
+      { id: 2, url: "https://www.url2.dev" },
+      { id: 3, url: "https://www.link3.dev" },
+    ];
+
+    const output = [{ id: 3, url: "https://www.link3.dev" }];
+
+    expect(filterByTerm(input, "link")).toEqual(output);
+
+    expect(filterByTerm(input, "LINK")).toEqual(output); // New test
+  });
+});
 ```
