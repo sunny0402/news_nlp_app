@@ -76,6 +76,14 @@ https://www.valentinog.com/blog/jest/
 npm install --save-dev jest
 ```
 
+Jest ships with jsdom
+https://jestjs.io/docs/tutorial-jquery
+
+Mocking and Async Testing
+https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions
+https://github.com/leighhalliday/easy-mobx-redux-comparison/blob/mocking-axios-finished/src/services/__tests__/unsplash.js
+https://github.com/leighhalliday/easy-mobx-redux-comparison/blob/mocking-axios-finished/src/__mocks__/axios.js
+
 ## Sample Test
 
 ```
