@@ -84,6 +84,12 @@ https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions
 https://github.com/leighhalliday/easy-mobx-redux-comparison/blob/mocking-axios-finished/src/services/__tests__/unsplash.js
 https://github.com/leighhalliday/easy-mobx-redux-comparison/blob/mocking-axios-finished/src/__mocks__/axios.js
 
+## Puppeteer
+
+https://github.com/smooth-code/jest-puppeteer
+https://github.com/smooth-code/jest-puppeteer/blob/master/packages/expect-puppeteer/README.md#api
+https://jestjs.io/docs/configuration
+
 ## Sample Test
 
 ```

@@ -14,6 +14,6 @@ import "./styles/footer.scss";
 import "./styles/form.scss";
 import "./styles/header.scss";
 
-alert("entry point exists ");
+// alert("entry point exists ");
 
 export { handleSubmit, summaryRequest, displayResult, serverDataRequest };
