@@ -3,19 +3,30 @@ import puppeteer from "puppeteer";
 import expect from "expect-puppeteer";
 
 describe("Testing form submission", () => {
-  beforeAll(async () => {
-    const browser = await puppeteer.launch();
-    const page = await browser.newPage();
-    await page.goto("http://localhost:8080/webpack-dev-server/");
-  });
   test("text entered in input fields and submitted", async () => {
-    await expect(page).toFill(
-      'input[id="summary-input-url"]',
+    beforeAll(async () => {
+      let browser = await puppeteer.launch({
+        headless: false,
+        slowMo: 10,
+        devTools: false,
+      });
+      let page = await browser.newPage();
+      await page.goto("http://localhost:8080/webpack-dev-server/");
+    });
+    await page.click("input#summary-input-url");
+    await page.type(
+      "input#summary-input-url",
       "https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions"
     );
-    await expect(page).toFill('input[id="summary-sentence-count"]', "5");
-    await page.toClick("submit");
     await browser.close();
+    //   await expect(page).toFill(
+    //     "#summary-input-url",
+    //     "https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions"
+    //   );
+    //   await expect(page).toFill("#summary-sentence-count", "5");
+    //   await page.toClick("submit");
+    //   await browser.close();
+    // });
   });
 });
 
