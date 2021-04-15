@@ -4,31 +4,42 @@ import expect from "expect-puppeteer";
 
 describe("Testing form submission", () => {
   test("text entered in input fields and submitted", async () => {
-    beforeAll(async () => {
-      let browser = await puppeteer.launch({
-        headless: false,
-        slowMo: 10,
-        devTools: false,
-      });
-      let page = await browser.newPage();
-      await page.goto("http://localhost:8080/webpack-dev-server/");
+    let browser = await puppeteer.launch({
+      headless: false,
+      slowMo: 30,
     });
+
+    let page = await browser.newPage();
+
+    //change the defualt wait time
+    await page.setDefaultTimeout(5000);
+    //change the defualt naviagation wait time
+    //await page.setDefaultNavigationTimeout(3000);
+
+    await page.goto("http://localhost:8080/webpack-dev-server/");
+
+    await page.waitFor(1000);
+    await page.waitForSelector("input#summary-input-url");
+
     await page.click("input#summary-input-url");
     await page.type(
       "input#summary-input-url",
       "https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions"
     );
     await browser.close();
-    //   await expect(page).toFill(
-    //     "#summary-input-url",
-    //     "https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions"
-    //   );
-    //   await expect(page).toFill("#summary-sentence-count", "5");
-    //   await page.toClick("submit");
-    //   await browser.close();
-    // });
   });
 });
+
+
+//NOTES
+//   await expect(page).toFill(
+//     "#summary-input-url",
+//     "https://www.leighhalliday.com/mocking-axios-in-jest-testing-async-functions"
+//   );
+//   await expect(page).toFill("#summary-sentence-count", "5");
+//   await page.toClick("submit");
+//   await browser.close();
+// });
 
 // test("test if form submission updates DOM ...", async () => {
 //   const browser = await puppeteer.launch();
