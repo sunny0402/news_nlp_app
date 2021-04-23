@@ -22,14 +22,14 @@
                 <section class="summary-section">
                     <form class="summary-form" name="theform" onsubmit="return Client.handleSubmit(event)">
                         <label for="summary-input-url">Enter a url to get a summary of that page or document</label>
-                        <input id="summary-input-url" type="url" name="inputURL"  placeholder="http://example.com">
+                        <input id="summary-input-url" name="inputURL" type="url"  placeholder="http://example.com">
                         
                         <label for="summary-sentence-count">Number of sentences in summary</label>
                         <input id="summary-sentence-count" type="number"
                         name="inputCount" min="1" max="50" step="1"  
                         placeholder="Enter a number from 1 to 50">
 
-                        <input type="submit" name="" value="submit"  
+                        <input type="submit" id="theSubmitBtn" value="submit"  
                         onsubmit="return Client.handleSubmit(event)"
                         onclick="return Client.handleSubmit(event)" >
                     </form>

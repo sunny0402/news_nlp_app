@@ -90,6 +90,10 @@ https://github.com/smooth-code/jest-puppeteer
 https://github.com/smooth-code/jest-puppeteer/blob/master/packages/expect-puppeteer/README.md#api
 https://jestjs.io/docs/configuration
 
+Error: Puppeteer cannot find selector on page
+https://stackoverflow.com/questions/50588874/puppeteer-cant-find-selector
+WHen launch dev enviroment (npm run build-dev) the page is displayed within an iframe
+
 ## Sample Test
 
 ```
