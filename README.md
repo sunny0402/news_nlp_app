@@ -121,3 +121,22 @@ describe("Filter function", () => {
   });
 });
 ```
+
+## Service Workers
+
+https://developers.google.com/web/tools/workbox/guides/generate-service-worker/webpack
+https://developers.google.com/codelabs/pwa-training/pwa03--going-offline#0
+
+```
+npm install workbox-webpack-plugin --save-dev
+
+//webpack.prod.js
+const WorkboxPlugin = require('workbox-webpack-plugin');
+new WorkboxPlugin.GenerateSW()
+
+//register service worker
+//add script to views/index.html above closing body tag
+
+
+
+```

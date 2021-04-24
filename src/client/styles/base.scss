@@ -1,14 +1,28 @@
+$font-stack: sans-serif, Helvetica;
+$text-color: rgba(217, 217, 217, 0.87);
+$text-size: 20px;
+$my-background-color: #000;   
 body {
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
     min-height: 100vh;
+    width: 100%;
+    font: 100% $font-stack;
+    color: $text-color;
+    size: $text-size;
+    background-color: $my-background-color;
+ 
 }
 
-main {
-    flex: 2;
+.summary-section{
+    #theSubmitBtn{
+
+    }
+
 }
 
-section {
-    max-width: 800px;
-    margin: 50px auto;
+.results-section{
+    
 }

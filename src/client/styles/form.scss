@@ -1,25 +1,14 @@
 form {
-    border: 1px solid #545454;
-    border-radius: 3px;
-    padding: 40px;
-}
-
 input {
-    padding: 5px 20px;
+    padding: 10px 10px 10px 10px;
     width: 100%;
     line-height: 16px;
-    margin: 10px 0;
+    margin: 5px 5px 5px 5px;
+    border: 5px solid #e74c4c;
+    border-radius: 5px;
 }
 
-    .switch-block {
-        width: 300px;
-    }
-    
-    .switch-toggle input {
-        width: 0px;
-        visibility: hidden;
-    }
-    
-    h5 {
-        margin-bottom: 5px;
-    }
+label{
+    size: 14px;
+}
+}
