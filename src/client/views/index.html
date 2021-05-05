@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
+        <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
         <meta charset="utf-8">
         <title>Summary App</title>
     </head>
-
     <body>
-
-        <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
-                navigation
-            </div>
-        </header>
-        <main>
+        <div class="page-container">
+        <section>
+            <header>
+                <h1>Summarize Anything on the Web</h1>
+            </header>
             <!-- test -->
             <!-- http://i.investopedia.com/inv/pdf/tutorials/dcf.pdf -->
 
-                <section class="summary-section">
+                <section class="summary-section" id="summary-section">
                     <form class="summary-form" name="theform" onsubmit="return Client.handleSubmit(event)">
                         <label for="summary-input-url">Enter a url to get a summary of that page or document</label>
                         <input id="summary-input-url" name="inputURL" type="url"  placeholder="http://example.com">
@@ -29,25 +27,21 @@
                         name="inputCount" min="1" max="50" step="1"  
                         placeholder="Enter a number from 1 to 50">
 
-                        <input type="submit" id="theSubmitBtn" value="submit"  
+                        <input type="submit" id="theSubmitBtn" value="Summarize"  
                         onsubmit="return Client.handleSubmit(event)"
                         onclick="return Client.handleSubmit(event)" >
                     </form>
-                <section>
+        </section>
 
 
 
             <section class="results-section">
-                <strong>Results:</strong>
+                <!-- <h2>Results:</h2> -->
                 <div id="results"></div>
             </section>
-
+        
             
-        </main>
-        <footer>
-            <p>This is a footer</p>
-        </footer>
-        <script>
+        <script>            
             //add service worker at end 
             //Check that service workers are supported
             if ('serviceWorker' in navigator) {
@@ -56,7 +50,7 @@
                     navigator.serviceWorker.register('/service-worker.js');
                 });
             }
-           </script>
-
+        </script>
+      </div>
     </body>
 </html>
