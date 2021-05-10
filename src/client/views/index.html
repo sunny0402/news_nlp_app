@@ -10,9 +10,12 @@
     </head>
     <body>
         <div class="page-container">
-        <section>
-            <header>
-                <h1>Summarize Anything on the Web</h1>
+            <h1>Text Analysis Page: Summary & Sentiment</h1>
+        
+        <!-- START summary input section -->
+        <section class="summary-input-section-container">
+            <header id="summary-section-header">
+                <h2>Summarize Anything on the Web</h2>
             </header>
             <!-- test -->
             <!-- http://i.investopedia.com/inv/pdf/tutorials/dcf.pdf -->
@@ -27,19 +30,48 @@
                         name="inputCount" min="1" max="50" step="1"  
                         placeholder="Enter a number from 1 to 50">
 
-                        <input type="submit" id="theSubmitBtn" value="Summarize"  
+                        <input type="submit" id="theSummarySubmitBtn" value="Summarize"  
                         onsubmit="return Client.handleSubmit(event)"
                         onclick="return Client.handleSubmit(event)" >
                     </form>
         </section>
+    <!--END summary input section -->
 
 
-
-            <section class="results-section">
+            <section class="summary-results-section">
                 <!-- <h2>Results:</h2> -->
-                <div id="results"></div>
+                <div id="summary-results-div"></div>
             </section>
-        
+
+    <!-- START sentiment input section -->
+            <section class="sentiment-input-section-container">
+                <header>
+                    <h2>Sentiment Analysis</h2>
+                </header>
+                <!-- test -->
+                <!-- http://i.investopedia.com/inv/pdf/tutorials/dcf.pdf -->
+    
+                    <section class="sentiment-section" id="sentiment-section">
+                        <form class="sentiment-form" name="sentiment-form" onsubmit="return Client.handleSubmit(event)">
+                            <label for="sentiment-input-url">Enter a url to get sentiment of that page or document</label>
+                            <input id="sentiment-input-url" name="sentimentInputURL" type="url"  placeholder="http://example.com">
+                            
+                            <label for="summary-sentence-count">Number of sentences in summary</label>
+                            <input id="summary-sentence-count" type="number"
+                            name="inputCount" min="1" max="50" step="1"  
+                            placeholder="Enter a number from 1 to 50">
+    
+                            <input type="submit" id="theSentimentSubmitBtn" value="Sentiment Analysis"  
+                            onsubmit="return Client.handleSubmit(event)"
+                            onclick="return Client.handleSubmit(event)" >
+                        </form>
+            </section>
+    <!-- END sentiment input section -->
+
+            <section class="sentiment-results-section">
+                <!-- <h2>Results:</h2> -->
+                <div id="sentiment-results-div"></div>
+            </section>
             
         <script>            
             //add service worker at end 

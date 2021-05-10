@@ -1,12 +1,16 @@
-const dotenv = require("dotenv").config({ path: "../../.env" });
+const dotenv = require("dotenv");
+dotenv.config();
 const my_key = process.env.API_KEY;
-//dotenv.config({ path: "../../.env" });
+// const dotenv = require("dotenv").config({ path: "../../.env" });
 
 const path = require("path");
 const axios = require("axios").default;
 
-// Setup empty JS object to act as endpoint for all routes
+// Setup empty JS object to act as endpoint for SUMMARY route
 serverData = {};
+
+// Setup empty JS object to act as endpoint for SENTIMENT route
+sentimentDataObject = {};
 
 // Require Express to run server and routes
 const express = require("express");
@@ -20,7 +24,7 @@ const cors = require("cors");
 app.use(cors());
 
 // Initialize the main project folder
-//?????
+// ?????
 // app.use(express.static('dist'))
 // app.get('/', function (req, res) {
 //     res.sendFile('dist/index.html')
@@ -36,12 +40,12 @@ function listening() {
   console.log(`my server running on localhost: ${port}`);
 }
 
-// POST ROUTE: make Meaning Cloud API call, save data to server, send back to client success message
-app.post("/makeApiReq", myActions);
+// SUMMARY ENDPOINT: make Meaning Cloud SUMMARY API call, save data to server, send back to client success message
+app.post("/makeSummaryApiReq", getSummary);
 
-async function myActions(req, resp) {
+async function getSummary(req, resp) {
   //options: res.send(), res.json(), res.end()
-  console.log("myActions: incoming request is ..", req.body);
+  console.log("getSummary: incoming request is ..", req.body);
 
   var summary_req = {
     method: "GET",
@@ -69,7 +73,7 @@ async function myActions(req, resp) {
     console.log("serverData now is ...\n", serverData);
 
     //Not sending data back, client will make another request to get saved server data
-    resp.json("API request succesful and data saved to server.");
+    resp.json("API request succesful and SUMMARY data saved to server.");
   } catch (error) {
     console.log("serve/index.js/myActions error ...\n", error);
   }
@@ -91,5 +95,53 @@ async function sendServerData(req, resp) {
     resp.json(lastEntry);
   } catch (error) {
     console.log(error);
+  }
+}
+
+// SENTIMENT ROUTE: make Meaning Cloud SENTIMENT API call, save data to server, send back to client success message
+app.post("/makeSummaryApiReq", getSentiment);
+
+async function getSentiment(req, resp) {
+  //options: res.send(), res.json(), res.end()
+  console.log("getSentiment: incoming request is ..", req.body);
+  var sentiment_req = {
+    method: "GET",
+    url: "https://sentiment-analysis.p.rapidapi.com/sentiment-2.1",
+    params: {
+      key: `${my_key}`,
+      model: "general",
+      txt: `${req.body.thetext}`,
+      lang: "en",
+      egp: "n",
+      rt: "n",
+      uw: "n",
+      of: "json",
+      txtf: "plain",
+      sdg: "l",
+      dm: "s",
+    },
+    headers: {},
+  };
+  // url: `${req.body.summary_url}`,
+
+  //make meaningCloud SENTIMENT API call with axios
+  try {
+    const axios_response = await axios.request(summary_req);
+    const summary = await axios_response.data.summary;
+
+    console.log("summary ... \n", summary);
+
+    //save data to sentimentDataObject
+
+    let idx_sentimentDataObject = Object.keys(sentimentDataObject).length;
+    console.log("idx_sentimentDataObject  ...", idx_sentimentDataObject);
+
+    sentimentDataObject[idx_sentimentDataObject] = summary;
+    console.log(" sentimentDataObject data now is ...\n", sentimentDataObject);
+
+    //Not sending data back, client will make another request to get saved server data
+    resp.json("API request succesful and SENTIMENT data saved to server.");
+  } catch (error) {
+    console.log("serve/index.js/myActions error ...\n", error);
   }
 }

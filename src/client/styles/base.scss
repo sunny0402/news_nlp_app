@@ -8,7 +8,7 @@ body {
     justify-content: center;
     flex-direction: column;
     background-color: $my-background-color;
-    height: 100vh;
+    height: 200vh;
 
 }
 
@@ -21,7 +21,7 @@ body {
     border: none;
 }
 
-header {
+#summary-section-header{
     height: 300px;
     margin: 0 0 20px 0;
     border-radius: 16px;
@@ -30,7 +30,7 @@ header {
     background-size: cover;
     background-position: center center;
     text-align: center;
-    h1{
+    h2{
         align-items: center;
         font-size: 36px;
     }
@@ -45,7 +45,7 @@ header {
         line-height: 16px;
         border-radius: 10px;
     }
-    #theSubmitBtn{
+    #theSummarySubmitBtn{
         border:none;
         border-radius: 10px;
         background: green;
@@ -56,12 +56,12 @@ header {
 
 }
 
-.results-section{
+.summary-results-section{
     h2{
-     font-size: 30px;
-       text-align: center;
-    }
-    #results{
+        font-size: 30px;
+        text-align: center;
+        }
+    #summary-results-div{
         margin: 10px;
     }
 }

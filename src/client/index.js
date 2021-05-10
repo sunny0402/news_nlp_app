@@ -2,6 +2,7 @@ import { handleSubmit } from "./js/formHandler";
 import { summaryRequest } from "./js/summaryRequest";
 import { displayResult } from "./js/displayResult";
 import { serverDataRequest } from "./js/serverDataRequest";
+import { sentimentRequest } from "./js/sentimentRequest";
 
 /*because of the dependency tree that webpack builds, 
 if nothing ever is imported, it’s as if it doesn’t exist.*/
@@ -16,4 +17,10 @@ import "./styles/base.scss";
 
 // alert("entry point exists ");
 
-export { handleSubmit, summaryRequest, displayResult, serverDataRequest };
+export {
+  handleSubmit,
+  summaryRequest,
+  displayResult,
+  serverDataRequest,
+  sentimentRequest,
+};
