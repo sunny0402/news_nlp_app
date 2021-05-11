@@ -24,8 +24,8 @@ liveReload: false,
 ```
 //dev and express servers
 npm run build-prod
-npm run build-dev - dev server up on 8080
-npm start - express server up on 3000
+npm run build-dev -> dev server up on 8080
+npm start -> express server up on 3030
 ```
 
 ## Error Notes:

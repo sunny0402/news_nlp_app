@@ -1,7 +1,10 @@
-const dotenv = require("dotenv");
-dotenv.config();
+//1.production
+//const dotenv = require("dotenv");
+// dotenv.config();
+//2.dev
+const dotenv = require("dotenv").config({ path: "../../.env" });
+
 const my_key = process.env.API_KEY;
-// const dotenv = require("dotenv").config({ path: "../../.env" });
 
 const path = require("path");
 const axios = require("axios").default;
@@ -33,11 +36,12 @@ app.use(cors());
 app.use(express.static("dist"));
 
 // Setup Server
-const port = 3000;
+const port = 3030;
 //for deploying app: process.env.PORT
 const server = app.listen(process.env.PORT || port, listening);
 function listening() {
   console.log(`my server running on localhost: ${port}`);
+  console.log("my_key", my_key);
 }
 
 // SUMMARY ENDPOINT: make Meaning Cloud SUMMARY API call, save data to server, send back to client success message
@@ -99,18 +103,18 @@ async function sendServerData(req, resp) {
 }
 
 // SENTIMENT ROUTE: make Meaning Cloud SENTIMENT API call, save data to server, send back to client success message
-app.post("/makeSummaryApiReq", getSentiment);
+app.post("/makeSentimentApiReq", getSentiment);
 
 async function getSentiment(req, resp) {
   //options: res.send(), res.json(), res.end()
   console.log("getSentiment: incoming request is ..", req.body);
   var sentiment_req = {
     method: "GET",
-    url: "https://sentiment-analysis.p.rapidapi.com/sentiment-2.1",
+    url: "https://api.meaningcloud.com/sentiment-2.1",
     params: {
       key: `${my_key}`,
       model: "general",
-      txt: `${req.body.thetext}`,
+      txt: `${req.body.the_text}`,
       lang: "en",
       egp: "n",
       rt: "n",
@@ -126,17 +130,21 @@ async function getSentiment(req, resp) {
 
   //make meaningCloud SENTIMENT API call with axios
   try {
-    const axios_response = await axios.request(summary_req);
-    const summary = await axios_response.data.summary;
+    const axios_response = await axios.request(sentiment_req);
 
-    console.log("summary ... \n", summary);
+    // TODO: how does response look?
+    const sentiment = await axios_response.data;
+
+    console.log("sentiment_req ... \n", sentiment_req);
 
     //save data to sentimentDataObject
 
     let idx_sentimentDataObject = Object.keys(sentimentDataObject).length;
     console.log("idx_sentimentDataObject  ...", idx_sentimentDataObject);
 
-    sentimentDataObject[idx_sentimentDataObject] = summary;
+    //TODO: what should I save to server?
+
+    sentimentDataObject[idx_sentimentDataObject] = sentiment;
     console.log(" sentimentDataObject data now is ...\n", sentimentDataObject);
 
     //Not sending data back, client will make another request to get saved server data
