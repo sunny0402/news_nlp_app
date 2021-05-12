@@ -132,20 +132,33 @@ async function getSentiment(req, resp) {
   try {
     const axios_response = await axios.request(sentiment_req);
 
-    // TODO: how does response look?
     const sentiment = await axios_response.data;
 
-    console.log("sentiment_req ... \n", sentiment_req);
-
+    console.log("START sentiment...\n", sentiment);
+    console.log("END sentiment...\n");
     //save data to sentimentDataObject
 
     let idx_sentimentDataObject = Object.keys(sentimentDataObject).length;
     console.log("idx_sentimentDataObject  ...", idx_sentimentDataObject);
 
     //TODO: what should I save to server?
+    let sentences = sentiment.sentence_list;
+    sentences.forEach((a_sentence) => {
+      sentences.push(a_sentence.text);
+      sentences.push(a_sentence.score_tag);
+      sentences.push(a_sentence.confidence);
+    });
 
-    sentimentDataObject[idx_sentimentDataObject] = sentiment;
-    console.log(" sentimentDataObject data now is ...\n", sentimentDataObject);
+    sentimentDataObject[idx_sentimentDataObject] = {
+      my_score_tag: sentiment.score_tag,
+      my_confidence: sentiment.confidence,
+      my_irony: sentiment.irony,
+      my_sentence_list: sentences,
+    };
+    console.log(
+      " This is what I plan to display... \n sentimentDataObject[idx_sentimentDataObject] ...\n",
+      sentimentDataObject[idx_sentimentDataObject]
+    );
 
     //Not sending data back, client will make another request to get saved server data
     resp.json("API request succesful and SENTIMENT data saved to server.");
