@@ -25,10 +25,6 @@ async function handleSubmit(event) {
 
   //collect sentiment request data
   //TODO: add option of sentiment analysis for document or url
-  // let sentiment_doc = await document.getElementById("sentiment-input-doc")
-  //   .value;
-  // let sentiment_url = await document.getElementById("sentiment-input-url")
-  //   .value;
   if (document.getElementById("sentiment-input-txt").value) {
     let sentiment_txt = await document.getElementById("sentiment-input-txt")
       .value;

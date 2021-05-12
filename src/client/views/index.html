@@ -48,22 +48,15 @@
                 <header id="sentiment-section-header">
                     <h2>Sentiment Analysis</h2>
                 </header>
-                <!-- test -->
-                <!-- http://i.investopedia.com/inv/pdf/tutorials/dcf.pdf -->
     
                     <section class="sentiment-section" id="sentiment-section">
                         <form class="sentiment-form" name="sentiment-form" onsubmit="return Client.handleSubmit(event)">
                             <label for="sentiment-input-txt">Paste text to get sentiment of that page or document</label>
                             <input id="sentiment-input-txt" name="sentimentInputTxt" type="text"  placeholder="Words and more words.">
-                            
-                            <!-- <label for="summary-sentence-count">Number of sentences in summary</label>
-                            <input id="summary-sentence-count" type="number"
-                            name="inputCount" min="1" max="50" step="1"  
-                            placeholder="Enter a number from 1 to 50"> -->
-    
+                                
                             <input type="submit" id="theSentimentSubmitBtn" value="Sentiment Analysis"  
-                            onsubmit="return Client.handleSubmit(event)"
-                            onclick="return Client.handleSubmit(event)" >
+                            onsubmit="return Client.handleSubmitSentiment(event)"
+                            onclick="return Client.handleSubmitSentiment(event)" >
                         </form>
             </section>
     <!-- END sentiment input section -->

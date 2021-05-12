@@ -83,25 +83,6 @@ async function getSummary(req, resp) {
   }
 }
 
-//GET ROUTE: send server data to client so that it will be displayed
-app.get("/dataReq", sendServerData);
-
-async function sendServerData(req, resp) {
-  try {
-    console.log("sendServerData: incoming get request is ... \n", req.body);
-
-    const lastEntry = {
-      summary: serverData[Object.keys(serverData).length - 1],
-    };
-
-    console.log("sendServerData:  ... \n", lastEntry);
-
-    resp.json(lastEntry);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 // SENTIMENT ROUTE: make Meaning Cloud SENTIMENT API call, save data to server, send back to client success message
 app.post("/makeSentimentApiReq", getSentiment);
 
@@ -134,19 +115,16 @@ async function getSentiment(req, resp) {
 
     const sentiment = await axios_response.data;
 
-    console.log("START sentiment...\n", sentiment);
-    console.log("END sentiment...\n");
-    //save data to sentimentDataObject
-
     let idx_sentimentDataObject = Object.keys(sentimentDataObject).length;
     console.log("idx_sentimentDataObject  ...", idx_sentimentDataObject);
 
-    //TODO: what should I save to server?
-    let sentences = sentiment.sentence_list;
-    sentences.forEach((a_sentence) => {
-      sentences.push(a_sentence.text);
-      sentences.push(a_sentence.score_tag);
-      sentences.push(a_sentence.confidence);
+    let sentences = [];
+    sentiment.sentence_list.forEach((a_sentence) => {
+      sentences.push({
+        text: a_sentence.text,
+        score_tag: a_sentence.score_tag,
+        confidence: a_sentence.confidence,
+      });
     });
 
     sentimentDataObject[idx_sentimentDataObject] = {
@@ -164,5 +142,44 @@ async function getSentiment(req, resp) {
     resp.json("API request succesful and SENTIMENT data saved to server.");
   } catch (error) {
     console.log("serve/index.js/myActions error ...\n", error);
+  }
+}
+
+//GET ROUTE: send server SUMMARY data to client so that it will be displayed
+app.get("/dataReq", sendServerData);
+
+async function sendServerData(req, resp) {
+  try {
+    console.log("sendServerData: incoming get request received");
+
+    const lastEntry = {
+      summary: serverData[Object.keys(serverData).length - 1],
+    };
+
+    console.log("sendServerData:  ... \n", lastEntry);
+
+    resp.json(lastEntry);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//GET ROUTE: send server SENTIMENT data to client so that it will be displayed
+app.get("/dataReqSentiment", sendSentimentData);
+
+async function sendSentimentData(req, resp) {
+  try {
+    console.log("sendSentimentData: incoming get request received");
+
+    const lastEntrySentiment = {
+      sentiment_stats:
+        sentimentDataObject[Object.keys(sentimentDataObject).length - 1],
+    };
+
+    console.log("sendServerData:  ... \n", lastEntrySentiment);
+
+    resp.json(lastEntrySentiment);
+  } catch (error) {
+    console.log(error);
   }
 }
