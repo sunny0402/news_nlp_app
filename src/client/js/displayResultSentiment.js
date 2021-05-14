@@ -25,7 +25,7 @@ function displayResultSentiment(data_obj_from_server) {
   );
 
   result.appendChild(sentiment_text);
-  sentiment_text.appendChild(child_sentence);
+  sentiment_text.appendChild(sentence_list);
 }
 
 export { displayResultSentiment };

@@ -1,81 +1,123 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <script
-        src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-        crossorigin="anonymous"></script>
-        <meta charset="utf-8">
-        <title>Text Analysis App</title>
-    </head>
-    <body>
-        <div class="page-container">
-            <h1>Text Analysis Page: Summary & Sentiment</h1>
-        
-        <!-- START summary input section -->
-        <section class="summary-input-section-container">
-            <header id="summary-section-header">
-                <h2>Summarize Anything on the Web</h2>
-            </header>
-            <!-- test -->
-            <!-- http://i.investopedia.com/inv/pdf/tutorials/dcf.pdf -->
+  <head>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <meta charset="utf-8" />
+    <title>Text Analysis App</title>
+  </head>
+  <body>
+    <div class="page-container">
+      <h1>Text Analysis Page: Summary & Sentiment</h1>
 
-                <section class="summary-section" id="summary-section">
-                    <form class="summary-form" name="theform" onsubmit="return Client.handleSubmit(event)">
-                        <label for="summary-input-url">Enter a url to get a summary of that page or document</label>
-                        <input id="summary-input-url" name="inputURL" type="url"  placeholder="http://example.com">
-                        
-                        <label for="summary-sentence-count">Number of sentences in summary</label>
-                        <input id="summary-sentence-count" type="number"
-                        name="inputCount" min="1" max="50" step="1"  
-                        placeholder="Enter a number from 1 to 50">
+      <!-- START summary input section -->
+      <section class="summary-input-section-container">
+        <header id="summary-section-header">
+          <h2>Summarize Anything on the Web</h2>
+        </header>
+        <!-- test -->
+        <!-- http://i.investopedia.com/inv/pdf/tutorials/dcf.pdf -->
 
-                        <input type="submit" id="theSummarySubmitBtn" value="Summarize"  
-                        onsubmit="return Client.handleSubmit(event)"
-                        onclick="return Client.handleSubmit(event)" >
-                    </form>
+        <section class="summary-section" id="summary-section">
+          <form
+            class="summary-form"
+            name="theform"
+            onsubmit="return Client.handleSubmit(event)"
+          >
+            <label for="summary-input-url"
+              >Enter a url to get a summary of that page or document</label
+            >
+            <input
+              id="summary-input-url"
+              name="inputURL"
+              type="url"
+              placeholder="http://example.com"
+            />
+
+            <label for="summary-sentence-count"
+              >Number of sentences in summary</label
+            >
+            <input
+              id="summary-sentence-count"
+              type="number"
+              name="inputCount"
+              min="1"
+              max="50"
+              step="1"
+              placeholder="Enter a number from 1 to 50"
+            />
+            <div class="submit-button-container">
+              <input
+                type="submit"
+                id="theSummarySubmitBtn"
+                value="Summarize"
+                onsubmit="return Client.handleSubmit(event)"
+                onclick="return Client.handleSubmit(event)"
+              />
+            </div>
+          </form>
         </section>
-    <!--END summary input section -->
+      </section>
+      <!--END summary input section -->
 
+      <section class="summary-results-section">
+        <!-- <h2>Results:</h2> -->
+        <div id="summary-results-div"></div>
+      </section>
 
-            <section class="summary-results-section">
-                <!-- <h2>Results:</h2> -->
-                <div id="summary-results-div"></div>
-            </section>
+      <!-- START sentiment input section -->
+      <section class="sentiment-input-section-container">
+        <header id="sentiment-section-header">
+          <h2>Sentiment Analysis</h2>
+        </header>
 
-    <!-- START sentiment input section -->
-            <section class="sentiment-input-section-container">
-                <header id="sentiment-section-header">
-                    <h2>Sentiment Analysis</h2>
-                </header>
-    
-                    <section class="sentiment-section" id="sentiment-section">
-                        <form class="sentiment-form" name="sentiment-form" onsubmit="return Client.handleSubmit(event)">
-                            <label for="sentiment-input-txt">Paste text to get sentiment of that page or document</label>
-                            <input id="sentiment-input-txt" name="sentimentInputTxt" type="text"  placeholder="Words and more words.">
-                                
-                            <input type="submit" id="theSentimentSubmitBtn" value="Sentiment Analysis"  
-                            onsubmit="return Client.handleSubmitSentiment(event)"
-                            onclick="return Client.handleSubmitSentiment(event)" >
-                        </form>
-            </section>
-    <!-- END sentiment input section -->
+        <section class="sentiment-section" id="sentiment-section">
+          <form
+            class="sentiment-form"
+            name="sentiment-form"
+            onsubmit="return Client.handleSubmit(event)"
+          >
+            <label for="sentiment-input-txt"
+              >Paste text to get sentiment of that page or document</label
+            >
+            <input
+              id="sentiment-input-txt"
+              name="sentimentInputTxt"
+              type="text"
+              placeholder="Words and more words."
+            />
+            <div class="sentiment-button-container">
+              <input
+                type="submit"
+                id="theSentimentSubmitBtn"
+                value="Sentiment Analysis"
+                onsubmit="return Client.handleSubmitSentiment(event)"
+                onclick="return Client.handleSubmitSentiment(event)"
+              />
+            </div>
+          </form>
+        </section>
+      </section>
+      <!-- END sentiment input section -->
 
-            <section class="sentiment-results-section">
-                <!-- <h2>Results:</h2> -->
-                <div id="sentiment-results-div"></div>
-            </section>
-            
-        <script>            
-            //add service worker at end 
-            //Check that service workers are supported
-            if ('serviceWorker' in navigator) {
-                // Use the window load event to keep the page load performant
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js');
-                });
-            }
-        </script>
-      </div>
-    </body>
+      <section class="sentiment-results-section">
+        <!-- <h2>Results:</h2> -->
+        <div id="sentiment-results-div"></div>
+      </section>
+
+      <script>
+        //add service worker at end
+        //Check that service workers are supported
+        if ("serviceWorker" in navigator) {
+          // Use the window load event to keep the page load performant
+          window.addEventListener("load", () => {
+            navigator.serviceWorker.register("/service-worker.js");
+          });
+        }
+      </script>
+    </div>
+  </body>
 </html>
