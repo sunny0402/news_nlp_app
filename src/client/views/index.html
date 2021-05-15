@@ -7,11 +7,37 @@
       crossorigin="anonymous"
     ></script>
     <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Get a summary of any text. Peform sentiment analysis."
+    />
+    <meta
+      name="keywords"
+      content="summary, summarize, sentiment analysis, nlp"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Text Analysis App</title>
+      <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <div class="page-container">
-      <h1>Text Analysis Page: Summary & Sentiment</h1>
+      <header id="website-header">
+          <h1>Text Analysis Page: Summary & Sentiment</h1>
+          <img
+          src="https://cdn.pixabay.com/photo/2017/09/25/13/12/dog-2785074_960_720.jpg"
+        />
+        <ul>
+            <li><a href="#summary-section">Summary</a></li>
+            <li><a href="#sentiment-section">Sentiment</a></li>
+            <li><a href="#footer-contact-info">Contact</a></li>
+        </ul>
+      </header>
 
       <!-- START summary input section -->
       <section class="summary-input-section-container">
@@ -53,7 +79,7 @@
               <input
                 type="submit"
                 id="theSummarySubmitBtn"
-                value="Summarize"
+                value="Summary"
                 onsubmit="return Client.handleSubmit(event)"
                 onclick="return Client.handleSubmit(event)"
               />
@@ -93,7 +119,7 @@
               <input
                 type="submit"
                 id="theSentimentSubmitBtn"
-                value="Sentiment Analysis"
+                value="Sentiment"
                 onsubmit="return Client.handleSubmitSentiment(event)"
                 onclick="return Client.handleSubmitSentiment(event)"
               />
@@ -107,6 +133,19 @@
         <!-- <h2>Results:</h2> -->
         <div id="sentiment-results-div"></div>
       </section>
+
+      <footer class="footer" id="footer-contact-info">
+        <div class="footer-content">
+          <div class="social-list">
+            <a href="https://github.com/sunny0402">
+              <i class="fab fa-github"></i
+            ></a>
+            <a href="https://sunnywebapp.com/">
+              <i class="fa fa-address-card"></i
+            ></a>
+          </div>
+        </div>
+      </footer>
 
       <script>
         //add service worker at end
