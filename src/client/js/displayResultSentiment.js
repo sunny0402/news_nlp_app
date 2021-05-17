@@ -10,7 +10,10 @@ function displayResultSentiment(data_obj_from_server) {
   sentiment_text.id = "theSentimentParagraph";
 
   //This is what will be displayed.
-  sentiment_text.innerHTML = `Overall Sentiment Score: ${data_obj_from_server.sentiment_stats.my_score_tag} `;
+  sentiment_text.innerHTML =
+    `Overall Sentiment Score: ${data_obj_from_server.sentiment_stats.my_score_tag}` +
+    ` |  ` +
+    `Model Confidence in Score: ${data_obj_from_server.sentiment_stats.my_confidence} `;
 
   let sentence_list = document.createElement("ul");
   data_obj_from_server.sentiment_stats.my_sentence_list.forEach(
@@ -31,7 +34,8 @@ function displayResultSentiment(data_obj_from_server) {
 export { displayResultSentiment };
 
 // EXAMPLE SERVER SENTIMENT RESPONSE
-// sentiment_stats
+// {
+// sentiment_stats:
 // {
 //   my_score_tag: 'P',
 //   my_confidence: '94',
@@ -41,6 +45,7 @@ export { displayResultSentiment };
 //     { text: 'A bad day.', score_tag: 'N', confidence: '100' },
 //     { text: 'Excellent food.', score_tag: 'P+', confidence: '100' }
 //   ]
+// }
 // }
 
 //.style

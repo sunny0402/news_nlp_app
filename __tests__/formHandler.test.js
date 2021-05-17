@@ -25,12 +25,12 @@ describe("Testing form submission", () => {
     await my_frame.click("#summary-sentence-count");
     await my_frame.type("#summary-sentence-count", "3");
 
-    await my_frame.click("#theSubmitBtn");
+    await my_frame.click("#theSummarySubmitBtn");
 
     await page.waitFor(2000);
 
     const summary_paragraph = await my_frame.waitForSelector(
-      "#theResultsParagraph"
+      "#summary-results-div"
     );
 
     expect(summary_paragraph).toBeDefined();
