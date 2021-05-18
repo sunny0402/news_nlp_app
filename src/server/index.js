@@ -1,8 +1,8 @@
 //1.production
-//const dotenv = require("dotenv");
-// dotenv.config();
-//2.dev
-const dotenv = require("dotenv").config({ path: "../../.env" });
+const dotenv = require("dotenv");
+dotenv.config();
+//2.development
+//const dotenv = require("dotenv").config({ path: "../../.env" });
 
 const my_key = process.env.API_KEY;
 
