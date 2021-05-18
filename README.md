@@ -140,3 +140,31 @@ new WorkboxPlugin.GenerateSW()
 
 
 ```
+
+## Hosting: Heroku
+
+```
+heroku login
+git status (if not git repo git init)
+heroku git:remote -a name-of-app-on-heroku
+
+touch Procfile
+web: index.js (same as running node index.js locally)
+//server has to listen to port that heroku gives it
+//this port is available via variable process.env.PORT
+
+heroku create nameOfApp (will create link to application the other link is the git remote )
+
+
+git add .
+git commit -m "message"
+git push heroku master
+```
+
+```
+package.json
+
+"scripts": {
+"heroku-postbuild":
+}
+```

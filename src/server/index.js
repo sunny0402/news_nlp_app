@@ -1,8 +1,7 @@
-//1.production
+// Configure the environment variables
 const dotenv = require("dotenv");
+//  add Configuration to be able to use env variables
 dotenv.config();
-//2.development
-//const dotenv = require("dotenv").config({ path: "../../.env" });
 
 const my_key = process.env.API_KEY;
 
