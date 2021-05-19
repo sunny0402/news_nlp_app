@@ -51,5 +51,11 @@ module.exports = {
       cleanStaleWebpackAssets: true,
       protectWebpackAssets: false,
     }),
+    new webpack.DefinePlugin({
+      "process.env": {
+        PORT: '"3000"',
+      },
+    }),
+    // new WorkboxPlugin.GenerateSW(),
   ],
 };

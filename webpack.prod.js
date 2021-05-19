@@ -44,6 +44,11 @@ module.exports = {
       filename: "./index.html",
     }),
     new MiniCssExtractPlugin({ filename: "[name].css" }),
-    new WorkboxPlugin.GenerateSW(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        PORT: '"3000"',
+      },
+    }),
+    // new WorkboxPlugin.GenerateSW(),
   ],
 };
