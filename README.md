@@ -168,6 +168,7 @@ heroku create nameOfApp (will create link to application the other link is the g
 
 git add .
 git commit -m "message"
+//push to the master branch that heroku has access to
 git push heroku master
 ```
 

@@ -32,7 +32,8 @@ app.use(cors());
 //     res.sendFile('dist/index.html')
 // })
 
-app.use(express.static("dist"));
+// app.use(express.static("dist"));
+app.use(express.static(__dirname + "/dist"));
 
 // Setup Server
 const port = 3030;
@@ -44,9 +45,9 @@ function listening() {
 }
 
 //FOR HOSTING: home page
-app.get("/", (req, resp) => {
-  resp.sendFile(path.resolve("dist/index.html"));
-});
+// app.get("/", (req, resp) => {
+//   resp.sendFile(path.resolve("dist/index.html"));
+// });
 
 // SUMMARY ENDPOINT: make Meaning Cloud SUMMARY API call, save data to server, send back to client success message
 app.post("/makeSummaryApiReq", getSummary);
