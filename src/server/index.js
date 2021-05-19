@@ -32,11 +32,11 @@ app.use(cors());
 //     res.sendFile('dist/index.html')
 // })
 
-// app.use(express.static("dist"));
+//app.use(express.static("dist"));
 app.use(express.static(__dirname + "/dist"));
 
 // Setup Server
-const port = 3030;
+const port = 8080;
 //for deploying app: process.env.PORT
 const server = app.listen(process.env.PORT || port, listening);
 function listening() {
