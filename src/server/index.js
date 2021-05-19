@@ -40,8 +40,13 @@ const port = 3030;
 const server = app.listen(process.env.PORT || port, listening);
 function listening() {
   console.log(`my server running on localhost: ${port}`);
-  console.log("my_key", my_key);
+  // console.log("my_key", my_key);
 }
+
+//FOR HOSTING: home page
+app.get("/", (req, resp) => {
+  resp.sendFile(path.resolve("dist/index.html"));
+});
 
 // SUMMARY ENDPOINT: make Meaning Cloud SUMMARY API call, save data to server, send back to client success message
 app.post("/makeSummaryApiReq", getSummary);

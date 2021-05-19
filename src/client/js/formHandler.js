@@ -17,7 +17,7 @@ async function handleSubmit(event) {
     console.log("client_data ...\n", client_data);
     //SUMMARY REQUEST
     const server_msg = await Client.summaryRequest(
-      "http://localhost:3030/makeSummaryApiReq",
+      "/makeSummaryApiReq",
       client_data
     );
     console.log("formHandler: summaryRequest: server_msg", server_msg);
@@ -34,7 +34,7 @@ async function handleSubmit(event) {
     console.log("sentiment_data ...\n", sentiment_data);
     // NLP SENTIMENT REQUEST
     const server_msg_sentiment = await Client.sentimentRequest(
-      "http://localhost:3030/makeSentimentApiReq",
+      "/makeSentimentApiReq",
       sentiment_data
     );
     console.log(
@@ -43,9 +43,7 @@ async function handleSubmit(event) {
     );
   }
 
-  const data_2_display = await Client.serverDataRequest(
-    "http://localhost:3030/dataReq"
-  );
+  const data_2_display = await Client.serverDataRequest("/dataReq");
 
   console.log(
     "formHandler: Client.serverDataRequest: data_2_display",

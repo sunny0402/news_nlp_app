@@ -143,6 +143,16 @@ new WorkboxPlugin.GenerateSW()
 
 ## Hosting: Heroku
 
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment
+https://devcenter.heroku.com/articles/getting-started-with-nodejs
+
+Sample app which is ready to be deployed to heroku
+https://github.com/heroku/node-js-getting-started
+
+https://www.youtube.com/watch?v=MxfxiR8TVNU
+https://www.youtube.com/watch?v=72DYDMP09MM
+https://www.youtube.com/watch?v=xgvLP3f2Y7k
+
 ```
 heroku login
 git status (if not git repo git init)
@@ -160,8 +170,6 @@ git add .
 git commit -m "message"
 git push heroku master
 ```
-
-https://www.youtube.com/watch?v=xgvLP3f2Y7k
 
 ```
 package.json
