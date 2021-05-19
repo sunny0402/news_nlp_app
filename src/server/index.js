@@ -49,6 +49,11 @@ function listening() {
 //   resp.sendFile(path.resolve("dist/index.html"));
 // });
 
+// send the user to index html page inspite of the url
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "index.html"));
+});
+
 // SUMMARY ENDPOINT: make Meaning Cloud SUMMARY API call, save data to server, send back to client success message
 app.post("/makeSummaryApiReq", getSummary);
 

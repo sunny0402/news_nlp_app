@@ -182,3 +182,5 @@ package.json
 "heroku-postbuild":
 }
 ```
+
+    // "heroku-postbuild": "webpack --config webpack.prod.js"
