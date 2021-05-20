@@ -185,3 +185,16 @@ package.json
 ```
 
     // "heroku-postbuild": "webpack --config webpack.prod.js"
+
+## Debug Deploymen
+
+heroku logs --tail
+
+## Enviroment Variables Heroku
+
+https://devcenter.heroku.com/articles/config-vars
+heroku config
+heroku config:set API_KEY=
+heroku config:get my_key
+
+Access enviroment variables in code: process.env.my_key

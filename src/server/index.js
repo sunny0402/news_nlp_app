@@ -1,7 +1,7 @@
 // Configure the environment variables
-const dotenv = require("dotenv");
+//const dotenv = require("dotenv");
 //  add Configuration to be able to use env variables
-dotenv.config();
+//dotenv.config();
 
 const my_key = process.env.API_KEY;
 
