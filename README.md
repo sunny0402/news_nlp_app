@@ -173,6 +173,7 @@ git push heroku master
 
 https://devcenter.heroku.com/articles/git#creating-a-heroku-remote
 git push heroku testbranch:main
+git push heroku deployHeroku:main
 ```
 
 ```

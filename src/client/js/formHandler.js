@@ -17,14 +17,14 @@ async function handleSubmit(event) {
     console.log("client_data ...\n", client_data);
     //SUMMARY REQUEST
     const server_msg = await Client.summaryRequest(
-      "http://localhost:3000/makeSummaryApiReq",
+      "/makeSummaryApiReq",
       client_data
     );
     console.log("formHandler: summaryRequest: server_msg", server_msg);
   }
 
   const data_2_display = await Client.serverDataRequest(
-    "http://localhost:3000/dataReq"
+    "/dataReq"
   );
 
   console.log(

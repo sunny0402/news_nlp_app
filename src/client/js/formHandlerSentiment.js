@@ -13,7 +13,7 @@ async function handleSubmitSentiment(event) {
     console.log("sentiment_data ...\n", sentiment_data);
     // NLP SENTIMENT REQUEST
     const server_msg_sentiment = await Client.sentimentRequest(
-      "http://localhost:3000/makeSentimentApiReq",
+      "/makeSentimentApiReq",
       sentiment_data
     );
     console.log(
@@ -23,7 +23,7 @@ async function handleSubmitSentiment(event) {
   }
 
   const data_2_display = await Client.serverDataRequestSentiment(
-    "http://localhost:3000/dataReqSentiment"
+    "/dataReqSentiment"
   );
 
   console.log(
