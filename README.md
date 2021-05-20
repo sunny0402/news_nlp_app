@@ -1,6 +1,99 @@
 ## About
 
-## Setup Notes:
+Branch dedicated to the deploymnet of the App.
+
+## Hosting: Heroku
+
+https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment
+https://devcenter.heroku.com/articles/getting-started-with-nodejs
+
+Sample app which is ready to be deployed to heroku
+https://github.com/heroku/node-js-getting-started
+
+Deploying simple Node apps:
+https://www.youtube.com/watch?v=MxfxiR8TVNU
+https://www.youtube.com/watch?v=72DYDMP09MM
+https://www.youtube.com/watch?v=xgvLP3f2Y7k
+
+Deploying Webpack App:
+https://www.youtube.com/watch?v=Ru3Rj_hM8bo&t=992s
+
+```
+heroku login
+git status (if not git repo git init)
+heroku git:remote -a name-of-app-on-heroku
+
+touch Procfile
+web: index.js (same as running node index.js locally)
+
+heroku create nameOfApp (will create link to application the other link is the git remote )
+
+https://devcenter.heroku.com/articles/git#creating-a-heroku-remote
+git add .
+git commit -m "message"
+git push heroku testbranch:main
+git push heroku deployHeroku:main
+```
+
+```
+//package.json
+
+  "scripts": {
+    "postinstall": "webpack --config webpack.prod.js",
+    "start": "node src/server/index.js",
+    "build-prod": "webpack --config webpack.prod.js",
+    "build-dev": "webpack serve --config webpack.dev.js  --open"
+  },
+```
+
+```
+//webpack.prod.js
+//https://webpack.js.org/plugins/define-plugin/
+//The DefinePlugin allows you to create global constants which can be configured at compile time.
+
+new webpack.DefinePlugin({
+      "process.env": {
+        PORT: '"3000"',
+      },
+```
+
+```
+//index.js
+const my_key = process.env.API_KEY;
+
+app.use(express.static("dist"));
+
+const server = app.listen(process.env.PORT || port, listening);
+
+app.get("/", function (req, res) {
+  res.sendFile("dist/index.html");
+});
+```
+
+```
+//Procfile
+web: node src/server/index.js
+```
+
+Also make paths to server relative. So any client side JavaScript has relative paths to server.
+Not "http://localhost:3000/dataReq" BUT "/dataReq".
+
+API key set via: heroku config:get my_key
+
+## Debug Deploymen
+
+heroku logs --tail
+
+## Enviroment Variables Heroku
+
+https://devcenter.heroku.com/articles/config-vars
+heroku config
+heroku config:set API_KEY=
+heroku config:get my_key
+
+Access enviroment variables in code: process.env.my_key
+
+# Setup Notes:
 
 ```
 // if copy package.json then to install dependencies and devDependencies
@@ -137,64 +230,4 @@ new WorkboxPlugin.GenerateSW()
 //register service worker
 //add script to views/index.html above closing body tag
 
-
-
 ```
-
-## Hosting: Heroku
-
-https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/deployment
-https://devcenter.heroku.com/articles/getting-started-with-nodejs
-
-Sample app which is ready to be deployed to heroku
-https://github.com/heroku/node-js-getting-started
-
-https://www.youtube.com/watch?v=MxfxiR8TVNU
-https://www.youtube.com/watch?v=72DYDMP09MM
-https://www.youtube.com/watch?v=xgvLP3f2Y7k
-
-```
-heroku login
-git status (if not git repo git init)
-heroku git:remote -a name-of-app-on-heroku
-
-touch Procfile
-web: index.js (same as running node index.js locally)
-//server has to listen to port that heroku gives it
-//this port is available via variable process.env.PORT
-
-heroku create nameOfApp (will create link to application the other link is the git remote )
-
-
-git add .
-git commit -m "message"
-//push to the master branch that heroku has access to
-git push heroku master
-
-https://devcenter.heroku.com/articles/git#creating-a-heroku-remote
-git push heroku testbranch:main
-git push heroku deployHeroku:main
-```
-
-```
-package.json
-
-"scripts": {
-"heroku-postbuild":
-}
-```
-
-    // "heroku-postbuild": "webpack --config webpack.prod.js"
-
-## Debug Deploymen
-
-heroku logs --tail
-
-## Enviroment Variables Heroku
-
-https://devcenter.heroku.com/articles/config-vars
-heroku config
-heroku config:set API_KEY=
-heroku config:get my_key
-
-Access enviroment variables in code: process.env.my_key

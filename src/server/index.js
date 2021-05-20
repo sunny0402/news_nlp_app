@@ -34,13 +34,14 @@ const port = 3000;
 const server = app.listen(process.env.PORT || port, listening);
 function listening() {
   console.log(`my server running on ${port}`);
-  console.log("my_key", my_key);
+  //console.log("my_key", my_key);
 }
 
 // send the user to index html page inspite of the url
 // app.get("*", (req, res) => {
 //   res.sendFile(path.resolve(__dirname, "dist/index.html"));
 // });
+
 app.get("/", function (req, res) {
   res.sendFile("dist/index.html");
 });
