@@ -23,9 +23,7 @@ async function handleSubmit(event) {
     console.log("formHandler: summaryRequest: server_msg", server_msg);
   }
 
-  const data_2_display = await Client.serverDataRequest(
-    "/dataReq"
-  );
+  const data_2_display = await Client.serverDataRequest("/dataReq");
 
   console.log(
     "formHandler: Client.serverDataRequest: data_2_display",

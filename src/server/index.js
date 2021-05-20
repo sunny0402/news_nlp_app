@@ -38,8 +38,11 @@ function listening() {
 }
 
 // send the user to index html page inspite of the url
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "dist/index.html"));
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "dist/index.html"));
+// });
+app.get("/", function (req, res) {
+  res.sendFile("dist/index.html");
 });
 
 // SUMMARY ENDPOINT: make Meaning Cloud SUMMARY API call, save data to server, send back to client success message
