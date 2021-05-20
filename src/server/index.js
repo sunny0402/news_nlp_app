@@ -34,7 +34,7 @@ const port = 3000;
 const server = app.listen(process.env.PORT || port, listening);
 function listening() {
   console.log(`my server running on ${port}`);
-  // console.log("my_key", my_key);
+  console.log("my_key", my_key);
 }
 
 // send the user to index html page inspite of the url
@@ -115,6 +115,8 @@ async function getSentiment(req, resp) {
     const axios_response = await axios.request(sentiment_req);
 
     const sentiment = await axios_response.data;
+
+    console.log("sentiment", sentiment);
 
     let idx_sentimentDataObject = Object.keys(sentimentDataObject).length;
     console.log("idx_sentimentDataObject  ...", idx_sentimentDataObject);
