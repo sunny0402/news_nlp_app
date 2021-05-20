@@ -40,7 +40,7 @@ const port = 3000;
 //for deploying app: process.env.PORT
 const server = app.listen(process.env.PORT || port, listening);
 function listening() {
-  console.log(`my server running on localhost: ${port}`);
+  console.log(`my server running on ${port}`);
   // console.log("my_key", my_key);
 }
 
@@ -50,8 +50,8 @@ function listening() {
 // });
 
 // send the user to index html page inspite of the url
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve("dist/index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "dist/index.html"));
 });
 
 // SUMMARY ENDPOINT: make Meaning Cloud SUMMARY API call, save data to server, send back to client success message
