@@ -25,13 +25,6 @@ app.use(express.json());
 const cors = require("cors");
 app.use(cors());
 
-// Initialize the main project folder
-// ?????
-// app.use(express.static('dist'))
-// app.get('/', function (req, res) {
-//     res.sendFile('dist/index.html')
-// })
-
 app.use(express.static("dist"));
 //app.use(express.static(__dirname + "/dist"));
 
@@ -43,11 +36,6 @@ function listening() {
   console.log(`my server running on ${port}`);
   // console.log("my_key", my_key);
 }
-
-//FOR HOSTING: home page
-// app.get("/", (req, resp) => {
-//   resp.sendFile(path.resolve("dist/index.html"));
-// });
 
 // send the user to index html page inspite of the url
 app.get("*", (req, res) => {
