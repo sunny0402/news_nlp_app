@@ -23,7 +23,7 @@ heroku login
 git status (if not git repo git init)
 heroku git:remote -a name-of-app-on-heroku
 
-touch Procfile
+//Procfile
 web: index.js (same as running node index.js locally)
 
 heroku create nameOfApp (will create link to application the other link is the git remote )
