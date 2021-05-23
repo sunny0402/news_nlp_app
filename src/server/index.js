@@ -173,6 +173,10 @@ async function sendServerData(req, resp) {
     console.log("sendServerData:  ... \n", lastEntry);
 
     resp.json(lastEntry);
+    //clear data
+    while (serverData.length) {
+      delete serverData.summary;
+    }
   } catch (error) {
     console.log(error);
   }
@@ -193,6 +197,10 @@ async function sendSentimentData(req, resp) {
     console.log("sendServerData:  ... \n", lastEntrySentiment);
 
     resp.json(lastEntrySentiment);
+    //clear data
+    while (sentimentDataObject.length) {
+      delete sentimentDataObject.sentiment;
+    }
   } catch (error) {
     console.log(error);
   }
