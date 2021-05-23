@@ -49,7 +49,7 @@ body {
     }
     img {
       margin: 40px 0px 0px 0px;
-    //   border: 7px solid white;
+      border: 7px solid white;
       border-radius: 20px;
       width: 250px;
       height: 250px;
@@ -64,6 +64,10 @@ body {
       padding: 10px;
       background: rgba(15, 211, 129, 0.5);
       border-radius:10px;
+      display: flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction: row;
     }
     li {
       display: inline;
@@ -269,14 +273,12 @@ body {
     width: 100%;
     height: 100px;
     color: $text-color;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.25);
     // outline: 8px solid red;
 }
 
 .footer-content{
-    // background-color: rgba(0, 0, 0, 0.87);
     margin: 15px 0 0 0;
-    // color: #fff;
     font-family: $font-stack;
 }
 .social-list {
@@ -289,19 +291,125 @@ body {
         a{
             font-size: 16px;
             color: $text-color;
-            margin-right: 10px;
-            // color: #fff;
-            // opacity: 87%;
+            margin-right: 16px;
             text-decoration: none;
         }
         a:hover{
         cursor: pointer;
         background: rgba(15, 211, 129, 0.5);
-        padding: 2px;
+        padding: 6px;
         border-radius:10px;
         }
 
 }
 
+@media (max-width: 600px) {
+    $text-size: 15px;
+    $text-size-results: 15px;
+    $border-radius: 15px;
+    $max-width: 350px;
+    $btn-text-size: 14px;
+    .page-container{
+        width: 100%;
+    }
+    #website-header{
+        h1{
+            font-size: 19px;  
+        }
+        img {
+            margin: 25px 0px 0px 0px;
+            border-radius:  $border-radius;
+            width: 200px;
+            height: 200px;
+            border: 5px solid white;
+          }
+        a {
+            font-size: 17px; 
+        }
+        ul{
+            padding: 6px;
+        }
+    }
+    // SUMMARY Section
+    .summary-input-section-container{
+        width: 90%;
+    }
+    #summary-section-header{
+        height: 200px;
+        width: $max-width;
+        border-radius:  $border-radius;
+        h2{
+            font-size: 19px;
+        }
+    }
+    .summary-section{
+        font-size:  $text-size;
+        width: $max-width; 
+        input{
+            padding: 7px;
+        }
+        #theSummarySubmitBtn{
+            font-size: $btn-text-size;
+        }
+    }
 
+    .summary-results-section{
+        margin: 10px; 
+        #summary-results-div{
+            max-width: $max-width;   
+        }
+        #theResultsParagraph{   
+            padding: 15px; 
+        }
+    }
+
+    // SENTIMENT Section
+    .sentiment-input-section-container{
+        width: 90%;
+    }
+    #sentiment-section-header{
+        height: 200px;
+        width: $max-width;
+        border-radius:  $border-radius;
+        h2{
+            font-size: 19px;
+        }
+    }
+    .sentiment-section{
+        font-size:  $text-size;
+        width: $max-width; 
+        input{
+            padding: 7px;
+        }
+        #theSentimentSubmitBtn{
+            font-size: $btn-text-size;
+        }
+    }
+
+    .sentiment-results-section{
+        margin: 10px; 
+        #sentiment-results-div{
+            max-width: $max-width;   
+        }
+        #theSentimentParagraph{   
+            padding: 15px; 
+        }
+    }
+
+    .footer{
+        height: 70px;
+        .social-list {
+            flex-direction: column;
+        }
+        a{
+            margin-bottom: 6px;
+        }
+        a:hover{
+            padding: 3px;
+        }
+
+
+}
+
+}
 
