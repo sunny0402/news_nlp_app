@@ -21,9 +21,19 @@ const app = express();
 /* Middleware*/
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.json({ limit: "2mb" }));
 const cors = require("cors");
 app.use(cors());
+
+// rate limit: https://blog.logrocket.com/rate-limiting-node-js/
+const myrateLimit = require("express-rate-limit");
+const thelimit = myrateLimit({
+  windowMs: 24 * 60 * 60 * 1000, // 24 hrs in milliseconds
+  max: 10,
+  message: "You have exceeded the 10 requests in 24 hrs limit!",
+  headers: true,
+});
+app.use(thelimit);
 
 app.use(express.static("dist"));
 //app.use(express.static(__dirname + "/dist"));
