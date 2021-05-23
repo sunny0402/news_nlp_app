@@ -146,6 +146,11 @@ body {
         color: $text-color;
         font-size: $text-size;
         padding: 14px;
+
+        //https://stackoverflow.com/questions/5438567/css-submit-button-weird-rendering-on-ipad-iphone
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
     }
 
 }
@@ -237,7 +242,11 @@ body {
         background: blue;
         color: $text-color;
         font-size: $text-size;
-        padding: 14px;   
+        padding: 14px; 
+        //https://stackoverflow.com/questions/5438567/css-submit-button-weird-rendering-on-ipad-iphone
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;  
     }
 }
 
