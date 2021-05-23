@@ -250,7 +250,7 @@ body {
         font-size: 30px;
         text-align: center;
         }
-    #summary-results-div{
+    #sentiment-results-div{
         font-size: $text-size-results;
         max-width: 600px;
     }
@@ -287,6 +287,8 @@ body {
     flex-direction: row;
     // outline: 8px solid blue; 
         a{
+            font-size: 16px;
+            color: $text-color;
             margin-right: 10px;
             color: #fff;
             opacity: 87%;
@@ -294,8 +296,12 @@ body {
         }
         a:hover{
         cursor: pointer;
+        background: rgba(15, 211, 129, 0.5);
+        padding: 2px;
+        border-radius:10px;
         }
 
 }
+
 
 
