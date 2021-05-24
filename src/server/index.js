@@ -199,10 +199,11 @@ async function sendSentimentData(req, resp) {
     resp.json(lastEntrySentiment);
     //clear data
     while (sentimentDataObject.length) {
-      delete sentimentDataObject.my_score_tag;
-      delete sentimentDataObject.my_confidence;
-      delete sentimentDataObject.my_irony;
-      delete sentimentDataObject.my_sentence_list;
+      delete sentimentDataObject.sentiment_stats;
+      // delete sentimentDataObject.my_score_tag;
+      // delete sentimentDataObject.my_confidence;
+      // delete sentimentDataObject.my_irony;
+      // delete sentimentDataObject.my_sentence_list;
     }
   } catch (error) {
     console.log(error);
