@@ -1,5 +1,7 @@
 ## About
 
+https://text-analysis-app.herokuapp.com/
+
 Branch dedicated to the deploymnet of the App.
 
 ## Hosting: Heroku
