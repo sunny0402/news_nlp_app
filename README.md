@@ -33,7 +33,7 @@ heroku create nameOfApp (will create link to application the other link is the g
 https://devcenter.heroku.com/articles/git#creating-a-heroku-remote
 git add .
 git commit -m "message"
-git push heroku testbranch:main
+git push heroku notMainBranch:main
 git push heroku deployHeroku:main
 ```
 
