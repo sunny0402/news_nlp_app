@@ -1,15 +1,34 @@
 async function handleSubmit(event) {
   event.preventDefault();
 
-  //collect summary request data
-  if (
-    document.getElementById("summary-input-url").value &&
-    document.getElementById("summary-sentence-count").value
-  ) {
-    let client_url = await document.getElementById("summary-input-url").value;
-    let summary_sentences = await document.getElementById(
-      "summary-sentence-count"
-    ).value;
+  //validate user input after they hit submit ...
+  let pass_valid = true;
+
+  let client_url = document.getElementById("summary-input-url").value;
+  let summary_sentences = document.getElementById(
+    "summary-sentence-count"
+  ).value;
+
+  if (client_url.trim() === "") {
+    pass_valid = false;
+    alert("Please enter a url.");
+    return;
+  }
+  if (summary_sentences.trim() === "") {
+    pass_valid = false;
+    alert("Please enter number of sentences.");
+    return;
+  }
+  const regex =
+    /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+  console.log("regex", regex);
+  let result = regex.test(client_url);
+  if (!result) {
+    pass_valid = false;
+    alert("Please enter a valid url.");
+    return;
+  } else if (pass_valid) {
+    //collect summary request data
     let client_data = {
       sentences: summary_sentences,
       summary_url: client_url,
@@ -21,38 +40,18 @@ async function handleSubmit(event) {
       client_data
     );
     console.log("formHandler: summaryRequest: server_msg", server_msg);
-  }
 
-  //collect sentiment request data
-  //TODO: add option of sentiment analysis for document or url
-  if (document.getElementById("sentiment-input-txt").value) {
-    let sentiment_txt = await document.getElementById("sentiment-input-txt")
-      .value;
-    let sentiment_data = {
-      the_text: sentiment_txt,
-    };
-    console.log("sentiment_data ...\n", sentiment_data);
-    // NLP SENTIMENT REQUEST
-    const server_msg_sentiment = await Client.sentimentRequest(
-      "http://localhost:3030/makeSentimentApiReq",
-      sentiment_data
+    const data_2_display = await Client.serverDataRequest(
+      "http://localhost:3030/dataReq"
     );
+
     console.log(
-      "formHandler: sentimentRequest: server_msg_sentiment",
-      server_msg_sentiment
+      "formHandler: Client.serverDataRequest: data_2_display",
+      data_2_display
     );
+
+    Client.displayResult(data_2_display);
   }
-
-  const data_2_display = await Client.serverDataRequest(
-    "http://localhost:3030/dataReq"
-  );
-
-  console.log(
-    "formHandler: Client.serverDataRequest: data_2_display",
-    data_2_display
-  );
-
-  Client.displayResult(data_2_display);
 }
 
 export { handleSubmit };

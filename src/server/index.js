@@ -175,7 +175,16 @@ async function sendSentimentData(req, resp) {
         sentimentDataObject[Object.keys(sentimentDataObject).length - 1],
     };
 
-    console.log("sendServerData:  ... \n", lastEntrySentiment);
+    // var size = Object.keys(sentimentDataObject).length;
+    // while (size > 1) {
+    //   delete sentimentDataObject.sentiment_stats;
+    // }
+
+    console.log("sentimentDataObject ... ", sentimentDataObject);
+    console.log(
+      "sendServerData: lastEntrySentiment  ... \n",
+      lastEntrySentiment
+    );
 
     resp.json(lastEntrySentiment);
   } catch (error) {
