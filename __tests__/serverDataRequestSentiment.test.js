@@ -10,7 +10,7 @@ describe("Testing get data on server functionality", () => {
     console.log("response ... \n", response);
     console.log("response end ...");
 
-    const sentiment = await response.sentiment_stats;
-    expect(sentiment).toBeDefined();
+    // const sentiment = await response.json();
+    expect(response.sentiment_stats).toBeDefined();
   });
 });

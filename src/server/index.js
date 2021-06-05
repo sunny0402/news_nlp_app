@@ -181,6 +181,7 @@ async function sendSentimentData(req, resp) {
     // }
 
     console.log("sentimentDataObject ... ", sentimentDataObject);
+
     console.log(
       "sendServerData: lastEntrySentiment  ... \n",
       lastEntrySentiment
